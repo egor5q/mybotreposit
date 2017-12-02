@@ -1467,7 +1467,7 @@ def xod():
         if dataa.ren==1:
             dataa.maintimer.cancel()
             dataa.ren=0
-        xodtime=threading.Timer(6.0, endturn)
+        xodtime=threading.Timer(30.0, endturn)
         xodtime.start()
         dataa.ren=1
         dataa.maintimer=xodtime
