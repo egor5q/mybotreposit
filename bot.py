@@ -385,12 +385,15 @@ def battle(id, x, secondid): #ПРОВЕРКА НА ТО, ЕСТЬ ЛИ БИТВ
         if dataa.game.person[id]['loc'][x]==2:
           if dataa.game.person[id]['grasseat']!=1 and dataa.game.person[secondid]['grasseat']!=1:
             if dataa.game.person[id]['hunter']==1 and dataa.game.person[secondid]['hunter']==1:
+             if dataa.game.person[id]['hod']<dataa.hod and dataa.game.person[secondid]['hod']<dataa.hod:
               dataa.game.person[id]['fightwith']=dataa.game.person[secondid]['selfid']
               dataa.game.person[secondid]['fightwith']=dataa.game.person[id]['selfid']
               dataa.game.person[id]['fightwithhunt']=1
               dataa.game.person[secondid]['fightwithhunt']=1
               dataa.game.person[id]['fight']=1
               dataa.game.person[secondid]['fight']=1
+              dataa.game.person[id]['hod']=dataa.hod+1
+              dataa.game.person[secondid]['hod']=dataa.hod+1
             else:
 
               dataa.game.person[id]['fight'] = 1
@@ -464,8 +467,6 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
         dataa.game.person[id]['fightout'] = 1
         if dataa.game.person[id]['hod'] <= dataa.hod:
           dataa.game.person[id]['hod']=dataa.hod+1
-        if dataa.game.person[secondid]['hod'] < dataa.hod:
-          dataa.game.person[secondid]['hod'] = dataa.hod + 1
         dataa.game.person[secondid]['fightout'] = 1
         a=random.randint(20, dataa.game.person[id]['dmg'])
         dataa.game.person[secondid]['hp']-=a
