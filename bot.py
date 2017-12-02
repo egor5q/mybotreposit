@@ -55,7 +55,6 @@ def fightrun(id):
 
 def fightfight(id):
  if dataa.game.person[id]['die'] != 1:
-  if dataa.game.person[id]['hod'] < dataa.hod:
    if dataa.game.person[id]['fight']==1:
     if dataa.game.person[id]['fightwithhunt']==1:
         Keyboard = types.InlineKeyboardMarkup()
