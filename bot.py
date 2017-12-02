@@ -1456,7 +1456,7 @@ def endgame():
 
 def xod():
     if dataa.predatornumber > 0:
-        for id in dict(dataa.game.person):
+        for id in dataa.game.person:
             if dataa.game.person[id]['die']!=1:
               changeloc(id)
         go()
