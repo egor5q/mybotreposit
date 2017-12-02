@@ -1291,7 +1291,7 @@ def stats_message(message):
                      'Урон: '+str(dataa.game.person[message.from_user.id]['dmg'])+"\n"                    
                        )
       dataa.game.person[message.from_user.id]['textt']=''
-      dataa.game.person[message.from_user.id]['seelocation'] = ''
+      dataa.game.person[message.from_user.id]['seelocation'] = []
       dataa.game.person[message.from_user.id]['stat']=1
 
 
