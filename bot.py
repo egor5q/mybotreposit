@@ -65,8 +65,7 @@ def fightfight(id):
         dataa.game.person[id]['special'] = msg.message_id
         print('player hod ' + str(dataa.game.person[id]['hod']))
         print('game hod ' + str(dataa.hod))
-   else:
-      shag(id)
+
  else:
       bot.send_message(id, 'you died')
 
@@ -86,13 +85,12 @@ def shag(id):
 def go():
     for id in dataa.game.person:
      if dataa.game.person[id]['die'] != 1:
-       if dataa.game.person[id]['fight'] == 0:
-        shag(id)
+       shag(id)
+       fightfight(id)
+       fightrun(id)
+       runfight(id)
      else:
-        bot.send_message(id, 'you died')
-     fightfight(id)
-     fightrun(id)
-     runfight(id)
+       bot.send_message(id, 'you died')
         
 
 
