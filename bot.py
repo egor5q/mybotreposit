@@ -509,8 +509,8 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
 
 def endturn():
       for id in dataa.game.person:
-          mainid=id
-          for id in dataa.game.person:
+        mainid=id
+        for id in dataa.game.person:
            if id != mainid:
             x = 1
             while x < 22:
