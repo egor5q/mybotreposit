@@ -65,7 +65,7 @@ def fightfight(id):
         dataa.game.person[id]['special'] = msg.message_id
         print('player hod ' + str(dataa.game.person[id]['hod']))
         print('game hod ' + str(dataa.hod))
-  else:
+   else:
       shag(id)
  else:
       bot.send_message(id, 'you died')
