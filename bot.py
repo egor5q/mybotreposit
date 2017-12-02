@@ -520,11 +520,11 @@ def endturn():
         dataa.game.person[id]['sawanimal']=''
         if dataa.game.person[id]['readys']==0:
               medit('Время вышло!', id, dataa.game.person[id]['special'])
-          if dataa.game.person[id]['fight']!=1:
+        if dataa.game.person[id]['fight']!=1:
              reboot(id)
              dataa.game.person[id]['loc'][dataa.game.person[id]['timenumber']]=2
              changeloc(id)
-          else:
+        else:
              draka(id, dataa.game.person[id]['fightwith'])
              for id in dataa.game.person:
                  if dataa.game.person[id]['losetarget']==1:
