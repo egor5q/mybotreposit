@@ -465,8 +465,6 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
       if dataa.game.person[id]['hunter']==1:
        if dataa.game.person[secondid]['hunter'] == 1:
         dataa.game.person[id]['fightout'] = 1
-        if dataa.game.person[id]['hod'] <= dataa.hod:
-          dataa.game.person[id]['hod']=dataa.hod+1
         dataa.game.person[secondid]['fightout'] = 1
         a=random.randint(20, dataa.game.person[id]['dmg'])
         dataa.game.person[secondid]['hp']-=a
