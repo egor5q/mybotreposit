@@ -391,8 +391,8 @@ def battle(id, x, secondid): #ПРОВЕРКА НА ТО, ЕСТЬ ЛИ БИТВ
               dataa.game.person[secondid]['fightwithhunt']=1
               dataa.game.person[id]['fight']=1
               dataa.game.person[secondid]['fight']=1
-              dataa.game.person[id]['hod']=dataa.hod+1
-              dataa.game.person[secondid]['hod']=dataa.hod+1
+              dataa.game.person[id]['hod']=dataa.hod+2
+              dataa.game.person[secondid]['hod']=dataa.hod+2
             else:
 
               dataa.game.person[id]['fight'] = 1
@@ -508,30 +508,28 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
 
 
 def endturn():
-        for id in dataa.game.person:
-            mainid=id
-            dataa.game.person[id]['sawanimal']=''
-            if dataa.game.person[id]['readys']==0:
-                medit('Время вышло!', id, dataa.game.person[id]['special'])
-            if dataa.game.person[id]['fight']!=1:
-              reboot(id)
-              dataa.game.person[id]['loc'][dataa.game.person[id]['timenumber']]=2
-              changeloc(id)
-            else:
-                draka(id, dataa.game.person[id]['fightwith'])
-                for id in dataa.game.person:
-                    if dataa.game.person[id]['losetarget']==1:
-                        bot.send_message(id, 'Цель была проворнее, и сбежала от вас. Чтобы не умереть с голоду, придется быть быстрее...')
+      for id in dataa.game.person:
+          mainid=id
+          for id in dataa.game.person:
+          if id != mainid:
+            x = 1
+            while x < 22:
+              a = xfd(x)
+              battle(mainid, a, id)
+              x = x + 1
+        dataa.game.person[id]['sawanimal']=''
+        if dataa.game.person[id]['readys']==0:
+              medit('Время вышло!', id, dataa.game.person[id]['special'])
+          if dataa.game.person[id]['fight']!=1:
+             reboot(id)
+             dataa.game.person[id]['loc'][dataa.game.person[id]['timenumber']]=2
+             changeloc(id)
+          else:
+             draka(id, dataa.game.person[id]['fightwith'])
+             for id in dataa.game.person:
+                 if dataa.game.person[id]['losetarget']==1:
+                     bot.send_message(id, 'Цель была проворнее, и сбежала от вас. Чтобы не умереть с голоду, придется быть быстрее...')
 
-            for id in dataa.game.person:
-
-
-              if id != mainid:
-                x = 1
-                while x < 22:
-                    a = xfd(x)
-                    battle(mainid, a, id)
-                    x = x + 1
 
 
 
