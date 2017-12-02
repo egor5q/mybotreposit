@@ -8,7 +8,6 @@ import dataa
 from emoji import emojize
 import math
 import time
-import config
 
 
 
