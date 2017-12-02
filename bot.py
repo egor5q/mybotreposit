@@ -55,7 +55,7 @@ def fightrun(id):
 
 def fightfight(id):
  if dataa.game.person[id]['die'] != 1:
-  if dataa.game.person[id]['hod'] != dataa.hod:
+  if dataa.game.person[id]['hod'] < dataa.hod:
    if dataa.game.person[id]['fight']==1:
     if dataa.game.person[id]['fightwithhunt']==1:
         Keyboard = types.InlineKeyboardMarkup()
@@ -464,7 +464,7 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
         dataa.game.person[id]['fightout'] = 1
         if dataa.game.person[id]['hod'] <= dataa.hod:
           dataa.game.person[id]['hod']=dataa.hod+1
-        if dataa.game.person[secondid]['hod'] != dataa.hod:
+        if dataa.game.person[secondid]['hod'] < dataa.hod:
           dataa.game.person[secondid]['hod'] = dataa.hod + 1
         dataa.game.person[secondid]['fightout'] = 1
         a=random.randint(20, dataa.game.person[id]['dmg'])
