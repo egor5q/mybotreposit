@@ -65,7 +65,8 @@ def fightfight(id):
         dataa.game.person[id]['special'] = msg.message_id
         print('player hod ' + str(dataa.game.person[id]['hod']))
         print('game hod ' + str(dataa.hod))
-
+   else:
+      shag(id)
  else:
       bot.send_message(id, 'you died')
 
@@ -85,12 +86,14 @@ def shag(id):
 def go():
     for id in dataa.game.person:
      if dataa.game.person[id]['die'] != 1:
-       shag(id)
-       fightfight(id)
-       fightrun(id)
-       runfight(id)
+       if dataa.game.person[id]['fight'] == 0:
+           shag(id)
+       else:
+           fightfight(id)
+           fightrun(id)
+           runfight(id)
      else:
-       bot.send_message(id, 'you died')
+        bot.send_message(id, 'you died')
         
 
 
@@ -382,15 +385,12 @@ def battle(id, x, secondid): #ПРОВЕРКА НА ТО, ЕСТЬ ЛИ БИТВ
         if dataa.game.person[id]['loc'][x]==2:
           if dataa.game.person[id]['grasseat']!=1 and dataa.game.person[secondid]['grasseat']!=1:
             if dataa.game.person[id]['hunter']==1 and dataa.game.person[secondid]['hunter']==1:
-             if dataa.game.person[id]['hod']<dataa.hod and dataa.game.person[secondid]['hod']<dataa.hod:
               dataa.game.person[id]['fightwith']=dataa.game.person[secondid]['selfid']
               dataa.game.person[secondid]['fightwith']=dataa.game.person[id]['selfid']
               dataa.game.person[id]['fightwithhunt']=1
               dataa.game.person[secondid]['fightwithhunt']=1
               dataa.game.person[id]['fight']=1
               dataa.game.person[secondid]['fight']=1
-              dataa.game.person[id]['hod']=dataa.hod+2
-              dataa.game.person[secondid]['hod']=dataa.hod+2
             else:
 
               dataa.game.person[id]['fight'] = 1
@@ -464,9 +464,11 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
         dataa.game.person[id]['fightout'] = 1
         dataa.game.person[secondid]['fightout'] = 1
         a=random.randint(20, dataa.game.person[id]['dmg'])
-        dataa.game.person[secondid]['hp']-=a
         b=random.randint(20, dataa.game.person[secondid]['dmg'])
-        dataa.game.person[id]['hp'] -= b
+        if a>b:
+          dataa.game.person[secondid]['die']=1
+        else:
+          dataa.game.person[id]['die']=1
         dataa.game.person[id]['alreadydraka']=1
         dataa.game.person[secondid]['alreadydraka'] = 1
         dataa.game.person[id]['fight']=0
@@ -506,28 +508,30 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
 
 
 def endturn():
-      for id in dataa.game.person:
-        mainid=id
         for id in dataa.game.person:
-           if id != mainid:
-            x = 1
-            while x < 22:
-              a = xfd(x)
-              battle(mainid, a, id)
-              x = x + 1
-        dataa.game.person[id]['sawanimal']=''
-        if dataa.game.person[id]['readys']==0:
-              medit('Время вышло!', id, dataa.game.person[id]['special'])
-        if dataa.game.person[id]['fight']!=1:
-             reboot(id)
-             dataa.game.person[id]['loc'][dataa.game.person[id]['timenumber']]=2
-             changeloc(id)
-        else:
-             draka(id, dataa.game.person[id]['fightwith'])
-             for id in dataa.game.person:
-                 if dataa.game.person[id]['losetarget']==1:
-                     bot.send_message(id, 'Цель была проворнее, и сбежала от вас. Чтобы не умереть с голоду, придется быть быстрее...')
+            mainid=id
+            dataa.game.person[id]['sawanimal']=''
+            if dataa.game.person[id]['readys']==0:
+                medit('Время вышло!', id, dataa.game.person[id]['special'])
+            if dataa.game.person[id]['fight']!=1:
+              reboot(id)
+              dataa.game.person[id]['loc'][dataa.game.person[id]['timenumber']]=2
+              changeloc(id)
+            else:
+                draka(id, dataa.game.person[id]['fightwith'])
+                for id in dataa.game.person:
+                    if dataa.game.person[id]['losetarget']==1:
+                        bot.send_message(id, 'Цель была проворнее, и сбежала от вас. Чтобы не умереть с голоду, придется быть быстрее...')
 
+            for id in dataa.game.person:
+
+
+              if id != mainid:
+                x = 1
+                while x < 22:
+                    a = xfd(x)
+                    battle(mainid, a, id)
+                    x = x + 1
 
 
 
@@ -1454,14 +1458,14 @@ def endgame():
 
 def xod():
     if dataa.predatornumber > 0:
-        for id in dataa.game.person:
+        for id in dict(dataa.game.person):
             if dataa.game.person[id]['die']!=1:
               changeloc(id)
         go()
         if dataa.ren==1:
             dataa.maintimer.cancel()
             dataa.ren=0
-        xodtime=threading.Timer(30.0, endturn)
+        xodtime=threading.Timer(6.0, endturn)
         xodtime.start()
         dataa.ren=1
         dataa.maintimer=xodtime
