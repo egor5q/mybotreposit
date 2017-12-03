@@ -33,7 +33,7 @@ def runfight(id):
                                  'Иначе - увеличатся.', reply_markup=Keyboard)
             dataa.game.person[id]['special'] = msg.message_id
   else:
-      bot.send_message(id, 'you died')
+      pass
 
 
 def fightrun(id):
@@ -49,7 +49,7 @@ def fightrun(id):
                                    'Иначе - уменьшатся.',reply_markup=Keyboard)
               dataa.game.person[id]['special'] = msg.message_id
  else:
-      bot.send_message(id, 'you died')
+      pass
 
 
 
@@ -68,7 +68,7 @@ def fightfight(id):
    else:
       shag(id)
  else:
-      bot.send_message(id, 'you died')
+      pass
 
 
 def shag(id):
@@ -510,7 +510,6 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
 def endturn():
         for id in dataa.game.person:
              if dataa.game.person[id]['die']==1:
-                die(id)
                 dataa.players.remove(id)
         for id in dataa.game.person:
             mainid=id
