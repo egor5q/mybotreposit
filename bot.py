@@ -93,7 +93,7 @@ def go():
            fightrun(id)
            runfight(id)
      else:
-        bot.send_message(id, 'you died')
+        pass
         
 
 
@@ -508,6 +508,10 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
 
 
 def endturn():
+        for id in dataa.game.person:
+             if dataa.game.person[id]['die']==1:
+                die(id)
+                dataa.players.remove(id)
         for id in dataa.game.person:
             mainid=id
             dataa.game.person[id]['sawanimal']=''
