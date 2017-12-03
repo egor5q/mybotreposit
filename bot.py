@@ -430,6 +430,7 @@ def die(id):
     dataa.game.person[id]['die']=1
     reboot(id)
     dataa.game.person[id]['hp']=0
+    dataa.players.remove(id)
 
 def runchoice(id):
     z = random.choice(dataa.game.person[id]['escapelist'])
@@ -509,9 +510,6 @@ def draka(id, secondid):#ПРОЦЕСС БИТВЫ
 
 
 def endturn():
-        for id in dataa.game.person:
-             if dataa.game.person[id]['die']==1:
-                dataa.players.remove(id)
         for id in dataa.game.person:
             mainid=id
             dataa.game.person[id]['sawanimal']=''
