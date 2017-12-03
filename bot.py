@@ -166,6 +166,7 @@ def reboot(id):
     dataa.game.person[id]['loc']['21'] = 0
     dataa.seelocation=[]
     dataa.textt='Видимые локации:'
+    dataa.game.person[id]['readys']=0
 
 
 def rebootloc(id):
